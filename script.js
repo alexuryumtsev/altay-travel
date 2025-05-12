@@ -185,3 +185,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Загружаем Яндекс Карты
     loadYandexMaps();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+
+    function showSlide(n) {
+      // Убираем класс active у всех слайдов
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+      });
+
+      // Добавляем класс active текущему слайду
+      slides[n].classList.add('active');
+      currentSlide = n;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    // Инициализация карусели
+    showSlide(0);
+
+    // Автоматическая смена слайдов каждые 5 секунд
+    setInterval(nextSlide, 5000);
+});
