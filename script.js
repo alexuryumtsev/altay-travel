@@ -212,3 +212,55 @@ document.addEventListener('DOMContentLoaded', function() {
     // Автоматическая смена слайдов каждые 5 секунд
     setInterval(nextSlide, 5000);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Получаем все карточки туров
+  const tourCards = document.querySelectorAll('.tour-card');
+
+  // Получаем все модальные окна
+  const tourModals = document.querySelectorAll('.tour-modal');
+
+  // Получаем все кнопки закрытия модальных окон
+  const closeButtons = document.querySelectorAll('.close-modal');
+
+  // Открытие модального окна при клике на карточку
+  tourCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const tourType = this.getAttribute('data-tour');
+      const modal = document.getElementById(`${tourType}-modal`);
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
+    });
+  });
+
+  // Закрытие модального окна при клике на крестик
+  closeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const modal = this.closest('.tour-modal');
+      modal.style.display = 'none';
+      document.body.style.overflow = ''; // Разблокируем прокрутку страницы
+    });
+  });
+
+  // Закрытие модального окна при клике вне его области
+  tourModals.forEach(modal => {
+    modal.addEventListener('click', function(event) {
+      if (event.target === this) {
+        this.style.display = 'none';
+        document.body.style.overflow = ''; // Разблокируем прокрутку страницы
+      }
+    });
+  });
+
+  // Закрытие модального окна при нажатии клавиши Escape
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      tourModals.forEach(modal => {
+        if (modal.style.display === 'block') {
+          modal.style.display = 'none';
+          document.body.style.overflow = ''; // Разблокируем прокрутку страницы
+        }
+      });
+    }
+  });
+});

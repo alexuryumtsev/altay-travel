@@ -270,7 +270,7 @@ nav ul li a:hover:after {
 /* Секция Красота */
 .beauty {
     padding: 50px 0 100px;
-    text-align: center;
+    text-align: left;
     background-color: #f5f5f5;
 }
 
@@ -660,4 +660,238 @@ footer {
 
 .ymaps-2-1-79-controls__control:hover {
     opacity: 1;
+}
+
+/* Стили для карточек туров */
+.tour-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.tour-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tour-card:hover .tour-card-overlay {
+  opacity: 1;
+}
+
+.tour-details-btn {
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.tour-card:hover .tour-details-btn {
+  transform: translateY(0);
+}
+
+/* Стили для модальных окон */
+.tour-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  margin: 5% auto;
+  width: 80%;
+  max-width: 1000px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: modalFadeIn 0.4s;
+}
+
+@keyframes modalFadeIn {
+  from {opacity: 0; transform: translateY(-50px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s;
+  z-index: 10;
+}
+
+.close-modal:hover {
+  color: #FF6B35;
+}
+
+.modal-header {
+  padding: 20px 30px;
+  background-color: #222;
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.modal-body {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-image {
+  flex: 1;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 0 0 8px;
+}
+
+.modal-details {
+  flex: 1;
+  padding: 30px;
+}
+
+.modal-details h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.tour-feature {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: flex-start;
+}
+
+.tour-feature i {
+  font-size: 24px;
+  margin-right: 15px;
+  color: #FF6B35;
+  margin-top: 5px;
+}
+
+.feature-details h4 {
+  margin: 0 0 5px;
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.feature-details p {
+  margin: 0;
+  color: #666;
+}
+
+.modal-details .btn {
+  margin-top: 20px;
+}
+
+/* Адаптивные стили для модальных окон */
+@media (max-width: 992px) {
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal-image {
+    height: 300px;
+  }
+
+  .modal-image img {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+  }
+
+  .modal-image {
+    height: 200px;
+  }
+
+  .tour-feature i {
+    font-size: 20px;
+  }
+
+  .feature-details h4 {
+    font-size: 1rem;
+  }
+}
+
+.phone-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.phone-link:hover {
+  color: #FF6B35;
+}
+
+/* Добавляем красивое подчеркивание при наведении */
+.phone-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #FF6B35;
+  transition: width 0.3s ease;
+}
+
+.phone-link:hover::after {
+  width: 100%;
+}
+
+/* Добавляем иконку телефона */
+.phone-link::before {
+  content: "\f095"; /* Иконка телефона из Font Awesome */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: 5px;
+  color: #FF6B35;
+}
+
+/* Стили для футера */
+.footer-col .phone-link {
+  display: block;
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+.footer-col .phone-link:hover {
+  color: white;
+}
+
+/* Стили для телефонов в информации о локации */
+.location-info .phone-link {
+  font-weight: 700;
 }
