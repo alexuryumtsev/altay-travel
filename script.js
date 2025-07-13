@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Элементы слайдера
     const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.dot');
+    const dots = document.querySelectorAll('.dots .dot');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
 
@@ -230,6 +230,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const modal = document.getElementById(`${tourType}-modal`);
       modal.style.display = 'block';
       document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
+      
+      // Инициализируем слайдер после открытия модального окна
+      setTimeout(initModalSlider, 100);
     });
   });
 
@@ -239,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const modal = this.closest('.tour-modal');
       modal.style.display = 'none';
       document.body.style.overflow = ''; // Разблокируем прокрутку страницы
+      
     });
   });
 
@@ -248,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (event.target === this) {
         this.style.display = 'none';
         document.body.style.overflow = ''; // Разблокируем прокрутку страницы
+        
       }
     });
   });
@@ -259,8 +264,71 @@ document.addEventListener('DOMContentLoaded', function() {
         if (modal.style.display === 'block') {
           modal.style.display = 'none';
           document.body.style.overflow = ''; // Разблокируем прокрутку страницы
+          
         }
       });
     }
   });
+
+  // Инициализация слайдера в модальном окне
+  function initModalSlider() {
+    // Находим открытое модальное окно
+    const openModal = document.querySelector('.tour-modal[style*="block"]');
+    if (!openModal) return;
+    
+    const modalSlider = openModal.querySelector('.modal-image-slider');
+    if (!modalSlider) return;
+
+    const slides = modalSlider.querySelectorAll('.slide');
+    const prevBtn = modalSlider.querySelector('.prev-slide');
+    const nextBtn = modalSlider.querySelector('.next-slide');
+    const dots = modalSlider.querySelectorAll('.slider-dots .dot');
+    
+    
+    let currentSlide = 0;
+
+    // Функция показа слайда
+    function showSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      
+      // Убираем активный класс у всех слайдов
+      slides.forEach(slide => slide.classList.remove('active'));
+      
+      // Показываем нужный слайд
+      if (slides[index]) slides[index].classList.add('active');
+      
+      // Обновляем точки немедленно
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[index]) dots[index].classList.add('active');
+      
+      currentSlide = index;
+    }
+
+    // Следующий слайд
+    function nextSlide() {
+      const next = (currentSlide + 1) % slides.length;
+      showSlide(next);
+    }
+
+    // Предыдущий слайд
+    function prevSlide() {
+      const prev = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prev);
+    }
+
+    // Обработчики событий
+    prevBtn.onclick = prevSlide;
+    nextBtn.onclick = nextSlide;
+
+    // Обработчики для точек
+    dots.forEach((dot, index) => {
+      dot.onclick = () => showSlide(index);
+    });
+
+
+    // Инициализация
+    showSlide(0);
+  }
+
+
 });
