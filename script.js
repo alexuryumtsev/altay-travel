@@ -232,7 +232,9 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
       
       // Инициализируем слайдер после открытия модального окна
-      setTimeout(initModalSlider, 100);
+      setTimeout(() => {
+        initModalSlider(modal);
+      }, 200);
     });
   });
 
@@ -271,9 +273,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Инициализация слайдера в модальном окне
-  function initModalSlider() {
-    // Находим открытое модальное окно
-    const openModal = document.querySelector('.tour-modal[style*="block"]');
+  function initModalSlider(modal) {
+    // Используем переданное модальное окно или находим открытое
+    const openModal = modal || document.querySelector('.tour-modal[style*="block"]');
     if (!openModal) return;
     
     const modalSlider = openModal.querySelector('.modal-image-slider');
@@ -284,20 +286,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = modalSlider.querySelector('.next-slide');
     const dots = modalSlider.querySelectorAll('.slider-dots .dot');
     
+    if (slides.length === 0) return;
     
     let currentSlide = 0;
+    
+    // Убеждаемся, что все изображения загружены правильно
+    slides.forEach((slide, index) => {
+      const img = slide.querySelector('img');
+      if (img) {
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        img.style.objectPosition = 'center';
+        img.style.display = 'block';
+        
+        // Обработчик ошибки загрузки изображения
+        img.addEventListener('error', function() {
+          console.log('Ошибка загрузки изображения:', img.src);
+          img.style.backgroundColor = '#f0f0f0';
+        });
+        
+        // Обработчик успешной загрузки
+        img.addEventListener('load', function() {
+          console.log('Изображение загружено:', img.src);
+        });
+      }
+    });
 
     // Функция показа слайда
     function showSlide(index) {
       if (index < 0 || index >= slides.length) return;
       
       // Убираем активный класс у всех слайдов
-      slides.forEach(slide => slide.classList.remove('active'));
+      slides.forEach(slide => {
+        slide.classList.remove('active');
+      });
       
       // Показываем нужный слайд
-      if (slides[index]) slides[index].classList.add('active');
+      if (slides[index]) {
+        slides[index].classList.add('active');
+      }
       
-      // Обновляем точки немедленно
+      // Обновляем точки
       dots.forEach(dot => dot.classList.remove('active'));
       if (dots[index]) dots[index].classList.add('active');
       
@@ -317,13 +347,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Обработчики событий
-    prevBtn.onclick = prevSlide;
-    nextBtn.onclick = nextSlide;
+    if (prevBtn) {
+      prevBtn.onclick = prevSlide;
+    }
+    if (nextBtn) {
+      nextBtn.onclick = nextSlide;
+    }
 
     // Обработчики для точек
     dots.forEach((dot, index) => {
       dot.onclick = () => showSlide(index);
     });
+
+    // Сенсорное управление для мобильных устройств
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    modalSlider.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    modalSlider.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50; // Минимальное расстояние для свайпа
+      const swipeDistance = touchEndX - touchStartX;
+      
+      if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+          // Свайп вправо - предыдущий слайд
+          prevSlide();
+        } else {
+          // Свайп влево - следующий слайд
+          nextSlide();
+        }
+      }
+    }
 
 
     // Инициализация
