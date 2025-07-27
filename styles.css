@@ -566,6 +566,39 @@ footer {
     .hero h1 {
         font-size: 2.5rem;
     }
+
+    /* Центрирование контента на мобильной версии */
+    .beauty {
+        text-align: center;
+    }
+
+    .beauty h2 {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .beauty p {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 1.5rem;
+    }
+
+    .hero {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-content {
+        text-align: center;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .professional-tours h2,
+    .professional-tours p {
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -574,6 +607,73 @@ footer {
     }
 
     .hero h1 {
+        font-size: 2rem;
+    }
+
+    /* Дополнительное центрирование для малых экранов */
+    .beauty {
+        text-align: center;
+        padding: 30px 0 50px;
+    }
+
+    .beauty h2 {
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .beauty p {
+        text-align: center;
+        max-width: 100%;
+        margin: 0 auto 1.5rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .hero {
+        text-align: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        justify-content: center;
+    }
+
+    .hero-content {
+        text-align: center;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 15px;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+        text-align: center;
+        margin: 0 auto 2rem;
+    }
+
+    .professional-tours h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .professional-tours p {
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    .testimonials {
+        text-align: center;
+    }
+
+    .explore {
+        text-align: center;
+    }
+
+    .explore h2 {
         font-size: 2rem;
     }
 }
@@ -728,9 +828,9 @@ footer {
 
 .close-modal {
   position: absolute;
-  top: 15px;
+  top: 0px;
   right: 20px;
-  font-size: 28px;
+  font-size: 0px;
   font-weight: bold;
   color: #555;
   cursor: pointer;
@@ -823,6 +923,18 @@ footer {
   .modal-image img {
     border-radius: 0;
   }
+
+  .modal-details {
+    text-align: center;
+  }
+
+  .modal-details h3 {
+    text-align: center;
+  }
+
+  .modal-details p {
+    text-align: center;
+  }
 }
 
 @media (max-width: 576px) {
@@ -841,6 +953,23 @@ footer {
 
   .feature-details h4 {
     font-size: 1rem;
+  }
+
+  .modal-details {
+    text-align: center;
+  }
+
+  .modal-details h3 {
+    text-align: center;
+  }
+
+  .modal-details p {
+    text-align: center;
+  }
+
+  .tour-feature {
+    text-align: center;
+    justify-content: center;
   }
 }
 
@@ -1116,21 +1245,21 @@ footer {
   .slider-wrapper {
     border-radius: 0;
   }
-  
+
   .slider-container {
     min-height: 400px;
   }
-  
+
   .modal-image-slider {
     flex: 1;
   }
-  
+
   .prev-slide, .next-slide {
     width: 45px;
     height: 45px;
     font-size: 20px;
   }
-  
+
   .slide img {
     width: 100% !important;
     height: 100% !important;
@@ -1145,24 +1274,25 @@ footer {
   .slider-container {
     min-height: 370px;
   }
-  
+
   .modal-content {
     width: 90%;
     margin: 5% auto;
   }
-  
+
   .modal-header {
     padding: 15px 20px;
   }
-  
+
   .modal-header h2 {
     font-size: 1.5rem;
   }
-  
+
   .modal-details {
     padding: 20px;
+    text-align: center;
   }
-  
+
   .prev-slide, .next-slide {
     width: 45px;
     height: 45px;
@@ -1170,25 +1300,25 @@ footer {
     background: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
   }
-  
+
   .prev-slide:hover, .next-slide:hover {
     background: rgba(0, 0, 0, 0.8);
   }
-  
+
   .slider-dots {
     bottom: 15px;
     gap: 8px;
   }
-  
+
   .slider-dots .dot {
     width: 12px;
     height: 12px;
   }
-  
+
   .slider-dots .dot:hover {
     background: rgba(255, 255, 255, 0.9);
   }
-  
+
   .slide img {
     width: 100% !important;
     height: 100% !important;
@@ -1198,7 +1328,7 @@ footer {
     min-height: 370px !important;
     max-width: none !important;
   }
-  
+
   .slider-wrapper {
     background-color: #f0f0f0;
     position: relative;
@@ -1211,36 +1341,39 @@ footer {
   .slider-container {
     min-height: 350px;
   }
-  
+
   .modal-content {
     width: 95%;
     margin: 5% auto;
     max-height: 90vh;
     overflow-y: auto;
   }
-  
+
   .modal-header {
     padding: 10px 15px;
   }
-  
+
   .modal-header h2 {
     font-size: 1.3rem;
   }
-  
+
   .modal-details {
     padding: 15px;
+    text-align: center;
   }
-  
+
   .modal-details h3 {
     font-size: 1.2rem;
     margin-bottom: 15px;
+    text-align: center;
   }
-  
+
   .modal-details p {
     font-size: 0.9rem;
     line-height: 1.5;
+    text-align: center;
   }
-  
+
   .prev-slide, .next-slide {
     width: 40px;
     height: 40px;
@@ -1249,43 +1382,43 @@ footer {
     background: rgba(0, 0, 0, 0.7);
     border-radius: 50%;
   }
-  
+
   .prev-slide:hover, .next-slide:hover {
     background: rgba(0, 0, 0, 0.9);
   }
-  
+
   .slider-nav {
     padding: 0 5px;
   }
-  
+
   .slider-dots {
     bottom: 10px;
     gap: 6px;
   }
-  
+
   .slider-dots .dot {
     width: 10px;
     height: 10px;
   }
-  
+
   .tour-feature {
     margin-bottom: 15px;
   }
-  
+
   .tour-feature i {
     font-size: 18px;
     margin-right: 10px;
   }
-  
+
   .feature-details h4 {
     font-size: 1rem;
     margin-bottom: 5px;
   }
-  
+
   .feature-details p {
     font-size: 0.85rem;
   }
-  
+
   .slide img {
     width: 100% !important;
     height: 100% !important;
@@ -1296,7 +1429,7 @@ footer {
     max-width: none !important;
     min-height: 350px !important;
   }
-  
+
   .slider-wrapper {
     background-color: #f0f0f0;
     position: relative;
@@ -1309,30 +1442,42 @@ footer {
   .slider-container {
     min-height: 280px;
   }
-  
+
   .modal-content {
     width: 100%;
     margin: 0;
   }
-  
+
   .tour-modal {
     padding: 10px 0;
   }
-  
+
   .prev-slide, .next-slide {
     width: 35px;
     height: 35px;
     font-size: 14px;
   }
-  
+
   .modal-header {
     padding: 10px 15px;
   }
-  
+
   .modal-header h2 {
     font-size: 1rem;
   }
-  
+
+  .modal-details {
+    text-align: center;
+  }
+
+  .modal-details h3 {
+    text-align: center;
+  }
+
+  .modal-details p {
+    text-align: center;
+  }
+
   .slide img {
     width: 100% !important;
     height: 100% !important;
@@ -1343,7 +1488,7 @@ footer {
     min-height: 280px !important;
     max-width: none !important;
   }
-  
+
   .slider-wrapper {
     background-color: #f0f0f0;
     position: relative;
@@ -1356,46 +1501,48 @@ footer {
   .slider-container {
     min-height: 320px;
   }
-  
+
   .modal-content {
     width: 98%;
     margin: 2% auto;
   }
-  
+
   .modal-header {
     padding: 8px 12px;
   }
-  
+
   .modal-header h2 {
     font-size: 1.1rem;
   }
-  
+
   .modal-details {
     padding: 12px;
+    text-align: center;
   }
-  
+
   .modal-details h3 {
     font-size: 1.1rem;
     margin-bottom: 12px;
+    text-align: center;
   }
-  
+
   .prev-slide, .next-slide {
     width: 35px;
     height: 35px;
     font-size: 16px;
     background: rgba(0, 0, 0, 0.7);
   }
-  
+
   .slider-dots .dot {
     width: 8px;
     height: 8px;
   }
-  
+
   .close-modal {
     font-size: 24px;
     padding: 5px;
   }
-  
+
   .slide img {
     width: 100% !important;
     height: 100% !important;
@@ -1406,7 +1553,7 @@ footer {
     min-height: 320px !important;
     max-width: none !important;
   }
-  
+
   .slider-wrapper {
     background-color: #f0f0f0;
     position: relative;
